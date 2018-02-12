@@ -138,9 +138,8 @@ export default function() {
 
   const ex4 = `Use map, filter and reduce with compose to return the full name (as a string) of the female from Wyoming. `;
   const exercise4 = _ => {
-    return [];
     return compose(
-      reduce((acc, val) => acc + val),
+      reduce((acc, val) => acc + val, ""),
       map(client => client.name.firstName + " " + client.name.lastName),
       filter(
         client =>
@@ -152,26 +151,14 @@ export default function() {
   const ex5 =
     "Use map and filter to return the full address of the clients living in North Carolina";
   const exercise5 = _ => {
-    return [];
-    // const addressFormat = clients.map(
-    //   client =>
-    //     client.address.street +
-    //     client.address.city +
-    //     client.address.state +
-    //     client.address.zip
-    // );
-    // return addressFormat.filter(
-    //   client => client.address.state === "North Carolina"
+    const addresses = clients.map(x => x.address);
+    const filtered = addresses.filter(
+      client => client.state === "North Carolina"
+    );
+    return filtered.map(
+      client => `${client.street} ${client.city}, ${client.state} ${client.zip}`
+    );
   };
-  // return clients.map(
-  //   client => client.name.firstName + " " + client.name.lastName
-  // );
-  // {
-  //   street: "874 Delvana Street",
-  //   city: "Nanafilda",
-  //   state: "Wyoming",
-  //   zip: 98647
-  // },
 
   const ex6 = "use filter to remove anyone over the age of 25";
   const exercise6 = _ => {
